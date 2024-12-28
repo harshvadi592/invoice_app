@@ -19,6 +19,7 @@ Future<void> startGoldenRunner({
   required String description, // General description for the test
   required List<double> widths, // List of widths to test
   required Iterable<Scenario> scenarios, // Iterable of scenarios
+  AppTheme? appTheme, // Optional app theme
 }) async {
   for (final width in widths) {
     testGoldens(
@@ -27,13 +28,14 @@ Future<void> startGoldenRunner({
         await loadAppFonts();
 
         final builder =
-            GoldenBuilder.column(bgColor: AppColorScheme.light().background1);
+            GoldenBuilder.column(bgColor: appTheme?.colorScheme.background1);
 
         for (final scenario in scenarios) {
           builder.addScenario(
             scenario.description,
             AppThemeProvider(
-              colorScheme: AppColorScheme.light(),
+              appTheme:
+                  appTheme ?? AppTheme(colorScheme: AppColorScheme.light()),
               child: scenario.widget,
             ),
           );

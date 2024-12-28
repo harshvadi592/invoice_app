@@ -20,8 +20,8 @@ abstract interface class NavigationProvider {
   /// Pops the navigation stack until the feature init screen
   void goBackUntilFeatureInitScreen(FeatureNavigationConfig feature);
 
-  /// Clear navigation stack and push feature
-  void clearStackAndReplace(FeatureNavigationConfig config);
+  /// Clear navigation stack and push feature or screen
+  void clearStackAndReplace(NavigationConfig config);
 }
 
 class NavigationProviderImpl implements NavigationProvider {
@@ -66,9 +66,15 @@ class NavigationProviderImpl implements NavigationProvider {
   }
 
   @override
-  void clearStackAndReplace(FeatureNavigationConfig feature) {
+  void clearStackAndReplace(NavigationConfig config) {
     popUntilFirst();
-    navigatorKey.currentState!
-        .pushReplacementNamed(feature.id, arguments: feature);
+
+    if (config is FeatureNavigationConfig) {
+      navigatorKey.currentState!
+          .pushReplacementNamed(config.id, arguments: config);
+    } else if (config is ScreenNavigationConfig) {
+      navigatorKey.currentState!
+          .pushReplacementNamed(config.id, arguments: config);
+    }
   }
 }

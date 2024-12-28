@@ -4,6 +4,6 @@ import 'package:provider/provider.dart';
 
 extension BuildContextExtension on BuildContext {
   AppColorScheme get colorStyling {
-    return Provider.of<AppColorScheme>(this);
+    return Provider.of<AppTheme>(this).colorScheme;
   }
 }
