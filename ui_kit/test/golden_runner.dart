@@ -34,8 +34,10 @@ Future<void> startGoldenRunner({
           builder.addScenario(
             scenario.description,
             AppThemeProvider(
-              appTheme:
-                  appTheme ?? AppTheme(colorScheme: AppColorScheme.light()),
+              appTheme: appTheme ??
+                  AppTheme(
+                      colorScheme: AppColorScheme.light(),
+                      textStyles: AppTextStyles()),
               child: scenario.widget,
             ),
           );

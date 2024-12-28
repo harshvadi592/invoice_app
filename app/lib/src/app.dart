@@ -10,7 +10,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppThemeProvider(
-      appTheme: AppTheme(colorScheme: AppColorScheme.light()),
+      appTheme: AppTheme(
+          colorScheme: AppColorScheme.light(), textStyles: AppTextStyles()),
       child: MaterialApp(
         title: 'E-Invoices',
         debugShowCheckedModeBanner: false,

@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:ui_kit/ui_kit.dart';
 
-import '../golden_runner.dart';
+import '../../golden_runner.dart';
 
 void main() {
   final scenarios = [
